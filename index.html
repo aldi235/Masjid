@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masjid Jami' Muyassarin</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CUSTOM CSS TEMA PUTIH --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+            padding-top: 76px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand img {
+            height: 40px; 
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* --- PERUBAHAN WARNA MENU (HIJAU) --- */
+        .nav-link {
+            color: #2e703e !important; /* Hijau Daun (Tidak Terang) */
+            font-weight: 600; /* Sedikit dipertebal agar warna hijaunya jelas */
+            margin-left: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #144522 !important; /* Hijau Botol (Gelap) saat hover/aktif */
+            font-weight: 700;
+        }
+
+        /* Carousel / Slider Styling */
+        #articleCarousel .carousel-item img {
+            height: 450px;
+            object-fit: cover;
+        }
+        #articleCarousel .carousel-caption {
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            bottom: 0; left: 0; width: 100%;
+            padding: 30px 20px 20px 20px;
+            text-align: left;
+        }
+        #articleCarousel .caption-title {
+            color: #fff; font-weight: 600; font-size: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* --- STYLING CARD ARTIKEL --- */
+        .article-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fff;
+            border: 1px solid #eee;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+        }
+        .article-card img { height: 200px; object-fit: cover; }
+        .article-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; line-height: 1.4; }
+        .article-title a { text-decoration: none; color: #333; transition: color 0.2s; }
+        .article-title a:hover { color: #2e703e; /* Hover judul artikel juga jadi hijau */ }
+        .article-date { font-size: 0.85rem; color: #999; }
+
+        /* Pagination Custom Color (Hijau) */
+        .page-link { color: #2e703e; border-color: #dee2e6; }
+        .page-link:hover { color: #144522; background-color: #e9ecef; border-color: #dee2e6; }
+        .page-item.active .page-link { background-color: #2e703e; border-color: #2e703e; color: #fff; }
+
+        /* --- STYLING CARD JADWAL --- */
+        .schedule-img-container {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s ease;
+        }
+        .schedule-img-container:hover {
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        .schedule-img-container img {
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: auto;
+        }
+        .schedule-img-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- FOOTER STYLING --- */
+        footer a.social-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            color: #555;
+            margin: 0 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        footer a.social-icon:hover {
+            background-color: #2e703e; /* Icon medsos jadi hijau saat hover */
+            color: #fff;
+            border-color: #2e703e;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #articleCarousel .carousel-item img { height: 250px; }
+            #articleCarousel .caption-title { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/media-logo-1-01.png" alt="Logo Masjid Jami Muyassarin">
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">PROFILE</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="sejarah.html">Sejarah</a></li>
+                            <li><a class="dropdown-item" href="pengurus.html">Pengurus DKM</a></li>
+                            <li><a class="dropdown-item" href="imam-rawatib.html">Imam Rawatib</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="jadwalDropdown" role="button" data-bs-toggle="dropdown">JADWAL</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="jadwal-rawatib.html">Jadwal Imam Harian</a></li>
+                            <li><a class="dropdown-item" href="jadwal-jumat.html">Jadwal Petugas Jumat</a></li>
+                            <li><a class="dropdown-item" href="jadwal-tarawih.html">Jadwal Tarawih</a></li>
+                            <li><a class="dropdown-item" href="jadwal-pengajian.html">Jadwal Pengajian</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="acaraDropdown" role="button" data-bs-toggle="dropdown">ACARA</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="maulid.html">Maulid Nabi</a></li>
+                            <li><a class="dropdown-item" href="isra-miraj.html">Isra Miraj</a></li>
+                            <li><a class="dropdown-item" href="idul-fitri.html">Idul Fitri</a></li>
+                            <li><a class="dropdown-item" href="idul-adha.html">Idul Adha</a></li>
+                            <li><a class="dropdown-item" href="tahun-baru.html">Tahun Baru Islam</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">DONASI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="galeri.html">GALERI</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="bg-white pb-5">
+        <div class="container mt-4">
+            <div id="articleCarousel" class="carousel slide shadow rounded overflow-hidden" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#articleCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#articleCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#articleCarousel" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="img/DSC06951.JPG" class="d-block w-100" alt="Slide 1">
+                        <div class="carousel-caption"><h3 class="caption-title">Semarak Ramadhan 1446H di Masjid Muyassarin</h3></div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="https://placehold.co/1200x600/dee2e6/6c757d?text=Santunan+Anak+Yatim" class="d-block w-100" alt="Slide 2">
+                        <div class="carousel-caption"><h3 class="caption-title">Penyaluran Santunan Anak Yatim & Dhuafa</h3></div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="img/DSC06951.JPG" class="d-block w-100" alt="Slide 3">
+                        <div class="carousel-caption"><h3 class="caption-title">Jadwal Kajian Rutin Mingguan</h3></div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#articleCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#articleCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold m-0">Berita & Artikel</h3>
+                <a href="#" class="text-decoration-none small" style="color: #2e703e;">Lihat Semua <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100 article-card border-0 shadow-sm">
+                        <img src="img/DSC06951.JPG" class="card-img-top" alt="Artikel 1">
+                        <div class="card-body">
+                            <h5 class="article-title"><a href="#">Keutamaan Sholat Berjamaah</a></h5>
+                            <div class="article-date"><i class="far fa-calendar-alt me-1"></i> 23 Okt 2024</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100 article-card border-0 shadow-sm">
+                        <img src="https://placehold.co/400x300/eee/999?text=Berita+2" class="card-img-top" alt="Artikel 2">
+                        <div class="card-body">
+                            <h5 class="article-title"><a href="#">Laporan Keuangan Masjid Bulan Ini</a></h5>
+                            <div class="article-date"><i class="far fa-calendar-alt me-1"></i> 20 Okt 2024</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100 article-card border-0 shadow-sm">
+                        <img src="img/DSC06951.JPG" class="card-img-top" alt="Artikel 3">
+                        <div class="card-body">
+                            <h5 class="article-title"><a href="#">Dokumentasi Idul Adha 1445H</a></h5>
+                            <div class="article-date"><i class="far fa-calendar-alt me-1"></i> 18 Okt 2024</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100 article-card border-0 shadow-sm">
+                        <img src="https://placehold.co/400x300/eee/999?text=Berita+4" class="card-img-top" alt="Artikel 4">
+                        <div class="card-body">
+                            <h5 class="article-title"><a href="#">Tips Menghafal Al-Qur'an</a></h5>
+                            <div class="article-date"><i class="far fa-calendar-alt me-1"></i> 15 Okt 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <section id="jadwal" class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h3 class="fw-bold">Info & Jadwal</h3>
+                <p class="text-muted">Informasi kegiatan Masjid Jami' Muyassarin.</p>
+                <hr class="mx-auto" style="width: 50px; height: 3px; background-color: #333; opacity: 1;">
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="schedule-img-container">
+                        <img src="img/DSC06951.JPG" class="img-fluid" alt="Jadwal 1">
+                    </div>
+                    <p class="text-center mt-2 fw-semibold small">Kajian Rutin</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="schedule-img-container">
+                        <img src="https://placehold.co/600x800/eee/999?text=Poster+Jumat" class="img-fluid" alt="Jadwal 2">
+                    </div>
+                    <p class="text-center mt-2 fw-semibold small">Petugas Jumat</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="schedule-img-container">
+                        <img src="https://placehold.co/600x800/eee/999?text=Poster+TPA" class="img-fluid" alt="Jadwal 3">
+                    </div>
+                    <p class="text-center mt-2 fw-semibold small">Info TPA</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="schedule-img-container">
+                        <img src="https://placehold.co/600x800/eee/999?text=Laporan+Kas" class="img-fluid" alt="Jadwal 4">
+                    </div>
+                    <p class="text-center mt-2 fw-semibold small">Laporan Kas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-5 pb-4 border-top text-muted">
+        <div class="container">
+            <div class="row gy-4">
+                
+                <div class="col-md-7 text-center text-md-start">
+                    <h4 class="fw-bold text-dark mb-3">Masjid Jami' Muyassarin</h4>
+                    
+                    <p class="mb-2">
+                        <i class="fas fa-map-marker-alt me-2 text-dark"></i>
+                        Jl. Masjid Muyassarin Jl. Buntu No.12 A, RT.1/RW.1,<br>
+                        <span class="ms-md-4">Cipulir, Kebayoran Lama, Jakarta Selatan 12230</span>
+                    </p>
+                    
+                    <p class="mb-4">
+                        <i class="fas fa-phone me-2 text-dark"></i>(021) 1234 5678
+                    </p>
+
+                    <div class="p-3 bg-light rounded border border-secondary-subtle d-inline-block text-start">
+                        <h6 class="fw-bold text-dark mb-1">Rekening Donasi</h6>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-university fa-lg me-2" style="color: #2e703e;"></i>
+                            <div>
+                                <span class="d-block fw-bold text-dark">Bank BCA</span>
+                                <span class="d-block font-monospace">1234567890</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 text-center text-md-end">
+                    <h5 class="fw-bold text-dark mb-3">Ikuti Kami</h5>
+                    <p class="small mb-3">Dapatkan informasi terbaru melalui media sosial resmi kami:</p>
+                    
+                    <div class="d-flex justify-content-center justify-content-md-end gap-2">
+                        <a href="https://www.tiktok.com/@masjidjamimuyassarin" target="_blank" class="social-icon" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@masjidjamimuyassarin" target="_blank" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/masjidjamimuyassarin" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/masjidjamimuyassarin" target="_blank" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <p class="small mt-2 text-muted fst-italic">@masjidjamimuyassarin</p>
+                </div>
+
+            </div>
+
+            <div class="row mt-5 pt-3 border-top">
+                <div class="col-12 text-center small">
+                    &copy; 2024 Masjid Jami' Muyassarin. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNav');
+            if (window.scrollY > 50) navbar.classList.add('shadow');
+            else navbar.classList.remove('shadow');
+        });
+        
+        // Auto close navbar on mobile
+        document.querySelectorAll('.nav-link:not(.dropdown-toggle)').forEach(l => {
+            l.addEventListener('click', () => {
+                if (window.innerWidth < 992) new bootstrap.Collapse(document.getElementById('navbarNav'), {toggle:false}).hide();
+            })
+        });
+    </script>
+</body>
+</html>

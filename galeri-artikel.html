@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Foto - Masjid Jami' Muyassarin</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CUSTOM CSS TEMA PUTIH --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+            padding-top: 76px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand img {
+            height: 40px; 
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* --- WARNA MENU HIJAU --- */
+        .nav-link {
+            color: #2e703e !important; /* Hijau Daun */
+            font-weight: 600; 
+            margin-left: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #144522 !important; /* Hijau Botol saat hover/active */
+            font-weight: 700;
+        }
+
+        /* --- STYLING GALERI FOTO --- */
+        /* Diubah jadi tag <a>, pastikan display block agar kotak */
+        .gallery-item {
+            display: block; 
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            cursor: pointer;
+            text-decoration: none; /* Hilangkan garis bawah link */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px; /* Tinggi seragam untuk thumbnail */
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* Efek Zoom saat Hover */
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Overlay Hitam Transparan saat Hover */
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: #fff;
+            font-size: 2rem;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay i {
+            transform: scale(1);
+        }
+
+        /* Footer Styling */
+        footer a.social-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            color: #555;
+            margin: 0 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        footer a.social-icon:hover {
+            background-color: #2e703e;
+            color: #fff;
+            border-color: #2e703e;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/media-logo-1-01.png" alt="Logo Masjid Jami Muyassarin">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">PROFILE</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="sejarah.html">Sejarah</a></li>
+                            <li><a class="dropdown-item" href="pengurus.html">Pengurus DKM</a></li>
+                            <li><a class="dropdown-item" href="imam-rawatib.html">Imam Rawatib</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="jadwalDropdown" role="button" data-bs-toggle="dropdown">JADWAL</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="jadwal-rawatib.html">Jadwal Imam Harian</a></li>
+                            <li><a class="dropdown-item" href="jadwal-jumat.html">Jadwal Petugas Jumat</a></li>
+                            <li><a class="dropdown-item" href="jadwal-tarawih.html">Jadwal Tarawih</a></li>
+                            <li><a class="dropdown-item" href="jadwal-pengajian.html">Jadwal Pengajian</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="acaraDropdown" role="button" data-bs-toggle="dropdown">ACARA</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="maulid.html">Maulid Nabi</a></li>
+                            <li><a class="dropdown-item" href="isra-miraj.html">Isra Miraj</a></li>
+                            <li><a class="dropdown-item" href="idul-fitri.html">Idul Fitri</a></li>
+                            <li><a class="dropdown-item" href="idul-adha.html">Idul Adha</a></li>
+                            <li><a class="dropdown-item" href="tahun-baru.html">Tahun Baru Islam</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">DONASI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="galeri.html">GALERI</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="fw-bold display-5">Galeri Foto Kegiatan</h1>
+                <p class="text-muted fs-5">Potret kegiatan dan suasana Masjid Jami' Muyassarin.</p>
+                <hr class="mx-auto" style="width: 80px; height: 4px; background-color: #2e703e; opacity: 1;">
+            </div>
+
+            <div class="row g-4">
+                
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-src="https://placehold.co/800x800/eee/999?text=Sholat+Jumat+Full">
+                        <img src="https://placehold.co/400x400/eee/999?text=Sholat+Jumat" alt="Kegiatan 1">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-src="https://placehold.co/800x800/eee/999?text=Santunan+Yatim+Full">
+                        <img src="https://placehold.co/400x400/eee/999?text=Santunan+Yatim" alt="Kegiatan 2">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-src="https://placehold.co/800x800/eee/999?text=Kajian+Subuh+Full">
+                        <img src="https://placehold.co/400x400/eee/999?text=Kajian+Subuh" alt="Kegiatan 3">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-src="https://placehold.co/800x800/eee/999?text=Arsitektur+Masjid+Full">
+                        <img src="https://placehold.co/400x400/eee/999?text=Arsitektur+Masjid" alt="Kegiatan 4">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-src="https://placehold.co/800x800/eee/999?text=Buka+Puasa+Full">
+                        <img src="https://placehold.co/400x400/eee/999?text=Buka+Puasa" alt="Kegiatan 5">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-src="https://placehold.co/800x800/eee/999?text=Sholat+Ied+Full">
+                        <img src="https://placehold.co/400x400/eee/999?text=Sholat+Ied" alt="Kegiatan 6">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-src="https://placehold.co/800x800/eee/999?text=Qurban+Full">
+                        <img src="https://placehold.co/400x400/eee/999?text=Qurban" alt="Kegiatan 7">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-src="https://placehold.co/800x800/eee/999?text=Anak+TPA+Full">
+                        <img src="https://placehold.co/400x400/eee/999?text=Anak+TPA" alt="Kegiatan 8">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-dark px-4 py-2 rounded-pill">Lihat Foto Lainnya</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-white pt-5 pb-4 border-top text-muted">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-7 text-center text-md-start">
+                    <h4 class="fw-bold text-dark mb-3">Masjid Jami' Muyassarin</h4>
+                    <p class="mb-2"><i class="fas fa-map-marker-alt me-2 text-dark"></i> Jl. Masjid Muyassarin Jl. Buntu No.12 A, RT.1/RW.1,<br><span class="ms-md-4">Cipulir, Kebayoran Lama, Jakarta Selatan 12230</span></p>
+                    <p class="mb-4"><i class="fas fa-phone me-2 text-dark"></i>(021) 1234 5678</p>
+                    <div class="p-3 bg-light rounded border border-secondary-subtle d-inline-block text-start">
+                        <h6 class="fw-bold text-dark mb-1">Rekening Donasi</h6>
+                        <div class="d-flex align-items-center"><i class="fas fa-university fa-lg me-2" style="color: #2e703e;"></i><div><span class="d-block fw-bold text-dark">Bank BCA</span><span class="d-block font-monospace">1234567890</span></div></div>
+                    </div>
+                </div>
+                <div class="col-md-5 text-center text-md-end">
+                    <h5 class="fw-bold text-dark mb-3">Ikuti Kami</h5>
+                    <p class="small mb-3">Dapatkan informasi terbaru melalui media sosial resmi kami:</p>
+                    <div class="d-flex justify-content-center justify-content-md-end gap-2">
+                        <a href="https://www.tiktok.com/@masjidjamimuyassarin" target="_blank" class="social-icon" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@masjidjamimuyassarin" target="_blank" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/masjidjamimuyassarin" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/masjidjamimuyassarin" target="_blank" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <p class="small mt-2 text-muted fst-italic">@masjidjamimuyassarin</p>
+                </div>
+            </div>
+            <div class="row mt-5 pt-3 border-top"><div class="col-12 text-center small">&copy; 2024 Masjid Jami' Muyassarin. All rights reserved.</div></div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg border-0">
+            <div class="modal-content bg-transparent border-0 shadow-none position-relative">
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                <div class="modal-body p-0 text-center d-flex justify-content-center align-items-center" style="min-height: 300px;">
+                    <img src="" id="modalImage" class="img-fluid rounded shadow-lg" alt="Preview Gambar" style="max-height: 85vh;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect & Auto close mobile menu (Sama seperti halaman lain)
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNav');
+            if (window.scrollY > 50) navbar.classList.add('shadow');
+            else navbar.classList.remove('shadow');
+        });
+        document.querySelectorAll('.nav-link:not(.dropdown-toggle)').forEach(l => {
+            l.addEventListener('click', () => {
+                if (window.innerWidth < 992) new bootstrap.Collapse(document.getElementById('navbarNav'), {toggle:false}).hide();
+            })
+        });
+
+        // --- SCRIPT UNTUK MODAL GAMBAR ---
+        const galleryModal = document.getElementById('galleryModal');
+        if (galleryModal) {
+            galleryModal.addEventListener('show.bs.modal', event => {
+                // Tombol/Link yang diklik
+                const button = event.relatedTarget;
+                // Ambil URL gambar dari attribute data-src
+                const imgSrc = button.getAttribute('data-src');
+                // Temukan elemen gambar kosong di dalam modal
+                const modalImgTag = document.getElementById('modalImage');
+                // Isi attribute src dengan URL gambar yang diklik
+                modalImgTag.src = imgSrc;
+            });
+
+            // Opsional: Kosongkan src saat modal ditutup agar tidak ada flicker saat dibuka lagi
+            galleryModal.addEventListener('hidden.bs.modal', event => {
+                const modalImgTag = document.getElementById('modalImage');
+                modalImgTag.src = "";
+            });
+        }
+    </script>
+</body>
+</html>

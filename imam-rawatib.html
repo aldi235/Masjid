@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imam Rawatib - Masjid Jami' Muyassarin</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CUSTOM CSS TEMA PUTIH --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+            padding-top: 76px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand img {
+            height: 40px; 
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* --- WARNA MENU HIJAU --- */
+        .nav-link {
+            color: #2e703e !important; /* Hijau Daun */
+            font-weight: 600; 
+            margin-left: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #144522 !important; /* Hijau Botol saat hover/active */
+            font-weight: 700;
+        }
+
+        /* --- STYLING CARD IMAM (PORTRAIT/TEGAK) --- */
+        .imam-card {
+            background: #fff;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        .imam-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(46, 112, 62, 0.15);
+        }
+
+        /* Wrapper Gambar Rasio 3:4 */
+        .img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 133%; /* Rasio 3:4 */
+            overflow: hidden;
+        }
+
+        .img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .imam-card:hover .img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 20px;
+            background: #fff;
+            border-top: 4px solid #2e703e; /* Aksen garis hijau */
+        }
+
+        .jabatan-badge {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: #2e703e;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Footer Styling */
+        footer a.social-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            color: #555;
+            margin: 0 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        footer a.social-icon:hover {
+            background-color: #2e703e;
+            color: #fff;
+            border-color: #2e703e;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/media-logo-1-01.png" alt="Logo Masjid Jami Muyassarin">
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">PROFILE</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="sejarah.html">Sejarah</a></li>
+                            <li><a class="dropdown-item" href="pengurus.html">Pengurus DKM</a></li>
+                            <li><a class="dropdown-item" href="imam-rawatib.html">Imam Rawatib</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="jadwalDropdown" role="button" data-bs-toggle="dropdown">JADWAL</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="jadwal-rawatib.html">Jadwal Imam Harian</a></li>
+                            <li><a class="dropdown-item" href="jadwal-jumat.html">Jadwal Petugas Jumat</a></li>
+                            <li><a class="dropdown-item" href="jadwal-tarawih.html">Jadwal Tarawih</a></li>
+                            <li><a class="dropdown-item" href="jadwal-pengajian.html">Jadwal Pengajian</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="acaraDropdown" role="button" data-bs-toggle="dropdown">ACARA</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="maulid.html">Maulid Nabi</a></li>
+                            <li><a class="dropdown-item" href="isra-miraj.html">Isra Miraj</a></li>
+                            <li><a class="dropdown-item" href="idul-fitri.html">Idul Fitri</a></li>
+                            <li><a class="dropdown-item" href="idul-adha.html">Idul Adha</a></li>
+                            <li><a class="dropdown-item" href="tahun-baru.html">Tahun Baru Islam</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">DONASI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="galeri.html">GALERI</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="fw-bold display-6">Daftar Imam Rawatib</h1>
+                <p class="text-muted">Para Asatidz penghafal Al-Qur'an yang memimpin sholat berjamaah.</p>
+                <hr class="mx-auto" style="width: 60px; height: 3px; background-color: #2e703e; opacity: 1;">
+            </div>
+
+            <div class="row g-4 justify-content-center">
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card imam-card">
+                        <div class="img-wrapper">
+                            <img src="img/sample-photo-1.webp" alt="Imam 1">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">KH. Abdullah</h5>
+                            <span class="jabatan-badge">Imam Besar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card imam-card">
+                        <div class="img-wrapper">
+                            <img src="https://placehold.co/300x400/eee/999?text=Imam+2" alt="Imam 2">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">Ust. H. Zulkifli</h5>
+                            <span class="jabatan-badge">Imam Subuh</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card imam-card">
+                        <div class="img-wrapper">
+                            <img src="https://placehold.co/300x400/eee/999?text=Imam+3" alt="Imam 3">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">Ust. Hanif, Lc</h5>
+                            <span class="jabatan-badge">Imam Zuhur</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card imam-card">
+                        <div class="img-wrapper">
+                            <img src="https://placehold.co/300x400/eee/999?text=Imam+4" alt="Imam 4">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">Ust. Fajar Shiddiq</h5>
+                            <span class="jabatan-badge">Imam Asar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card imam-card">
+                        <div class="img-wrapper">
+                            <img src="https://placehold.co/300x400/eee/999?text=Imam+5" alt="Imam 5">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">Ust. Syamsul Arifin</h5>
+                            <span class="jabatan-badge">Imam Maghrib</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card imam-card">
+                        <div class="img-wrapper">
+                            <img src="https://placehold.co/300x400/eee/999?text=Imam+6" alt="Imam 6">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">Ust. Idrus Ramli</h5>
+                            <span class="jabatan-badge">Imam Isya</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card imam-card">
+                        <div class="img-wrapper">
+                            <img src="https://placehold.co/300x400/eee/999?text=Imam+7" alt="Imam 7">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">Ust. Hafiz Quran</h5>
+                            <span class="jabatan-badge">Imam Rawatib</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card imam-card">
+                        <div class="img-wrapper">
+                            <img src="https://placehold.co/300x400/eee/999?text=Imam+8" alt="Imam 8">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">Ust. Luqman Hakim</h5>
+                            <span class="jabatan-badge">Imam Rawatib</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card imam-card">
+                        <div class="img-wrapper">
+                            <img src="https://placehold.co/300x400/eee/999?text=Imam+9" alt="Imam 9">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">Ust. Yusuf Mansur</h5>
+                            <span class="jabatan-badge">Imam Badal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card imam-card">
+                        <div class="img-wrapper">
+                            <img src="https://placehold.co/300x400/eee/999?text=Imam+10" alt="Imam 10">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">Ust. Ibrahim A.</h5>
+                            <span class="jabatan-badge">Imam Badal</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-5 pb-4 border-top text-muted">
+        <div class="container">
+            <div class="row gy-4">
+                
+                <div class="col-md-7 text-center text-md-start">
+                    <h4 class="fw-bold text-dark mb-3">Masjid Jami' Muyassarin</h4>
+                    <p class="mb-2">
+                        <i class="fas fa-map-marker-alt me-2 text-dark"></i>
+                        Jl. Masjid Muyassarin Jl. Buntu No.12 A, RT.1/RW.1,<br>
+                        <span class="ms-md-4">Cipulir, Kebayoran Lama, Jakarta Selatan 12230</span>
+                    </p>
+                    <p class="mb-4">
+                        <i class="fas fa-phone me-2 text-dark"></i>(021) 1234 5678
+                    </p>
+                    <div class="p-3 bg-light rounded border border-secondary-subtle d-inline-block text-start">
+                        <h6 class="fw-bold text-dark mb-1">Rekening Donasi</h6>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-university fa-lg me-2" style="color: #2e703e;"></i>
+                            <div>
+                                <span class="d-block fw-bold text-dark">Bank BCA</span>
+                                <span class="d-block font-monospace">1234567890</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 text-center text-md-end">
+                    <h5 class="fw-bold text-dark mb-3">Ikuti Kami</h5>
+                    <p class="small mb-3">Dapatkan informasi terbaru melalui media sosial resmi kami:</p>
+                    <div class="d-flex justify-content-center justify-content-md-end gap-2">
+                        <a href="https://www.tiktok.com/@masjidjamimuyassarin" target="_blank" class="social-icon" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@masjidjamimuyassarin" target="_blank" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/masjidjamimuyassarin" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/masjidjamimuyassarin" target="_blank" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <p class="small mt-2 text-muted fst-italic">@masjidjamimuyassarin</p>
+                </div>
+
+            </div>
+            <div class="row mt-5 pt-3 border-top">
+                <div class="col-12 text-center small">
+                    &copy; 2024 Masjid Jami' Muyassarin. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNav');
+            if (window.scrollY > 50) navbar.classList.add('shadow');
+            else navbar.classList.remove('shadow');
+        });
+        
+        // Auto close navbar on mobile
+        document.querySelectorAll('.nav-link:not(.dropdown-toggle)').forEach(l => {
+            l.addEventListener('click', () => {
+                if (window.innerWidth < 992) new bootstrap.Collapse(document.getElementById('navbarNav'), {toggle:false}).hide();
+            })
+        });
+    </script>
+</body>
+</html>
