@@ -5,102 +5,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pendaftaran Imam & Muadzin</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; display: flex; flex-direction: column; align-items: center; padding: 0; margin: 0; }
+        /* RESET & BASE STYLES */
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background-color: #f4f7f6; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 0; 
+            margin: 0; 
+            min-height: 100vh;
+        }
         
-        /* HEADER DENGAN LOGO DI SAMPING */
+        /* HEADER LOGO DI KIRI */
         .header-container { 
             width: 100%; 
-            background: white; 
-            padding: 15px 20px; 
             display: flex; 
-            align-items: center; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            box-sizing: border-box;
-            margin-bottom: 30px;
+            justify-content: flex-start; 
+            padding: 15px 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            margin-bottom: 20px;
         }
         .logo-img { 
-            width: 50px; 
-            height: 50px; 
-            object-fit: contain; 
-            margin-right: 15px; 
-        }
-        .header-text h1 { 
-            margin: 0; 
-            font-size: 1.2rem; 
-            color: #1b5e20; 
-            line-height: 1.2;
-        }
-        .header-text p { 
-            margin: 2px 0 0; 
-            font-size: 0.85rem; 
-            color: #666; 
+            height: 40px; 
+            width: auto;
+            object-fit: contain;
         }
 
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 90%; max-width: 400px; margin-bottom: 30px; }
-        h2 { color: #2c3e50; text-align: center; margin-top: 0; margin-bottom: 25px; font-size: 1.4rem; }
+        /* CARD FORM RESPONSIVE */
+        .card { 
+            background: white; 
+            padding: 25px; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            width: 90%; 
+            max-width: 450px; 
+            margin-bottom: 30px;
+        }
+        h2 { 
+            color: #2c3e50; 
+            text-align: center; 
+            margin-top: 0; 
+            margin-bottom: 25px; 
+            font-size: 1.25rem; 
+            font-weight: 700;
+        }
         
-        label { font-weight: 600; display: block; margin-bottom: 8px; color: #34495e; font-size: 0.9rem; }
-        input[type="text"] { width: 100%; padding: 14px; margin-bottom: 20px; border: 1.5px solid #eee; border-radius: 10px; box-sizing: border-box; font-size: 16px; background: #fdfdfd; }
-        input[type="text"]:focus { border-color: #27ae60; outline: none; background: white; }
-        
-        .radio-group { margin-bottom: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .radio-option { 
+        label { 
+            font-weight: 600; 
+            display: block; 
+            margin-bottom: 8px; 
+            color: #34495e; 
+            font-size: 0.9rem; 
+        }
+
+        /* INPUT & SELECT STYLES */
+        input[type="text"], select { 
+            width: 100%; 
+            padding: 14px; 
+            margin-bottom: 20px; 
             border: 1.5px solid #eee; 
-            padding: 12px; 
             border-radius: 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-            transition: 0.2s;
+            font-size: 16px; 
+            background: #fafafa;
+            transition: all 0.3s ease;
+            -webkit-appearance: none; /* Biar style select sama di iOS */
         }
-        .radio-option input { margin-right: 8px; accent-color: #27ae60; }
-        .radio-option:has(input:checked) { border-color: #27ae60; background: #f0fdf4; color: #1b5e20; font-weight: bold; }
         
-        button { width: 100%; background-color: #27ae60; color: white; border: none; padding: 16px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        button:hover { background-color: #219150; transform: translateY(-2px); }
-        
-        #msg { display: none; text-align: center; padding: 20px; color: #27ae60; font-weight: bold; }
+        input[type="text"]:focus, select:focus { 
+            border-color: #27ae60; 
+            outline: none; 
+            background: white; 
+            box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1); 
+        }
 
-        .info-section { width: 90%; max-width: 500px; text-align: center; margin-bottom: 50px; }
-        .info-title { font-weight: bold; margin-bottom: 15px; color: #999; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
-        .poster-img { width: 100%; border-radius: 15px; }
+        button { 
+            width: 100%; 
+            background-color: #27ae60; 
+            color: white; 
+            border: none; 
+            padding: 16px; 
+            border-radius: 10px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+        }
+        button:hover { background-color: #219150; transform: translateY(-1px); }
+        button:active { transform: translateY(0); }
+        button:disabled { background-color: #95a5a6; cursor: not-allowed; }
+
+        #msg { 
+            display: none; 
+            text-align: center; 
+            padding: 15px; 
+            background-color: #e8f5e9;
+            color: #2e7d32; 
+            font-weight: bold; 
+            border-radius: 10px;
+        }
+
+        /* INFO SECTION (POSTER) */
+        .info-section { 
+            width: 90%; 
+            max-width: 500px; 
+            text-align: center; 
+            margin-bottom: 50px; 
+        }
+        .info-title { 
+            font-weight: bold; 
+            margin-bottom: 15px; 
+            color: #bdc3c7; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+        }
+        .poster-img { 
+            width: 100%; 
+            height: auto;
+            border-radius: 16px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+        }
+
+        /* MEDIA QUERY UNTUK LAYAR SANGAT KECIL */
+        @media (max-width: 360px) {
+            .card { padding: 20px; }
+            h2 { font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
 
     <div class="header-container">
         <!-- GANTI URL LOGO DI SINI -->
-        <img src="img/media-logo-1-01.png" class="logo-img" alt="Logo Masjid">
-        <div class="header-text">
-            <h1>Masjid Al-Muhajirin</h1>
-            <p>Pendaftaran Online Pelayan Masjid</p>
-        </div>
+        <img src="img/media-logo-1-1-01.png" class="logo-img" alt="Logo">
     </div>
 
     <div class="card">
-        <h2>Formulir Pendaftaran</h2>
+        <h2>Pendaftaran</h2>
         <form id="pendaftaranForm">
-            <label>Nama Lengkap</label>
-            <input type="text" id="nama" placeholder="Ketik nama lengkap..." required>
+            <label>NAMA LENGKAP</label>
+            <input type="text" id="nama" name="nama" placeholder="Ketik nama Anda..." required>
             
-            <label>Posisi</label>
-            <div class="radio-group">
-                <label class="radio-option"><input type="radio" name="posisi" value="Imam" required> Imam</label>
-                <label class="radio-option"><input type="radio" name="posisi" value="Muadzin"> Muadzin</label>
-            </div>
+            <label>PILIH POSISI</label>
+            <select id="posisi" name="posisi" required>
+                <option value="" disabled selected>-- Pilih Posisi --</option>
+                <option value="Imam">Imam</option>
+                <option value="Muadzin">Muadzin</option>
+            </select>
             
-            <button type="submit" id="submitBtn">Kirim Sekarang</button>
+            <button type="submit" id="submitBtn">KIRIM SEKARANG</button>
         </form>
         <div id="msg">✅ Data Berhasil Terkirim!</div>
     </div>
 
     <div class="info-section">
-        <div class="info-title">Info Lengkap</div>
-        <img src="img/pendaftaran.png" class="poster-img">
+        <div class="info-title">Informasi Pendaftaran</div>
+        <img src="img/pendaftaran.png" alt="Poster">
     </div>
 
     <script>
+        // MASUKKAN URL WEB APP GOOGLE SCRIPT LO DI SINI
         const scriptURL = 'PASTE_URL_WEB_APP_GOOGLE_LO_DI_SINI'; 
         const form = document.getElementById('pendaftaranForm');
         
@@ -108,23 +176,23 @@
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             btn.disabled = true;
-            btn.innerHTML = 'Sedang Mengirim...';
+            btn.innerHTML = 'MENGIRIM...';
 
             fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({
                     nama: document.getElementById('nama').value,
-                    posisi: form.elements['posisi'].value
+                    posisi: document.getElementById('posisi').value
                 }),
             })
-            .then(() => {
+            .then(response => {
                 form.style.display = 'none';
                 document.getElementById('msg').style.display = 'block';
             })
-            .catch(() => {
-                alert('Gagal, coba lagi Bro!');
+            .catch(error => {
+                alert('Gagal, coba lagi ya Bro!');
                 btn.disabled = false;
-                btn.innerHTML = 'Kirim Sekarang';
+                btn.innerHTML = 'KIRIM SEKARANG';
             });
         });
     </script>
