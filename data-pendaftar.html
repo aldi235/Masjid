@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pendaftar</title>
+    <!-- Library untuk PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        /* RESET & BASE STYLES */
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #f4f7f6; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 0; 
+            margin: 0; 
+            min-height: 100vh;
+        }
+        
+        /* HEADER LOGO DI KIRI (SAMA DENGAN PENDAFTARAN) */
+        .header-container { 
+            width: 100%; 
+            display: flex; 
+            justify-content: flex-start; 
+            padding: 15px 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            margin-bottom: 20px;
+        }
+        .logo-img { 
+            height: 40px; 
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* CARD MODEL KOTAK (TANPA CURVE) */
+        .card { 
+            background: white; 
+            padding: 25px; 
+            border-radius: 0; /* JADI KOTAK SIKU */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            width: 95%; 
+            max-width: 800px; 
+            margin-bottom: 30px;
+        }
+        
+        h2 { 
+            color: #2c3e50; 
+            text-align: center; 
+            margin-top: 0; 
+            margin-bottom: 25px; 
+            font-size: 1.25rem; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* TOMBOL MODEL KOTAK */
+        .controls { 
+            display: flex; 
+            justify-content: flex-end; 
+            margin-bottom: 20px; 
+            gap: 10px; 
+        }
+        button { 
+            padding: 12px 20px; 
+            border: none; 
+            border-radius: 0; /* KOTAK SIKU */
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 14px;
+            transition: 0.3s; 
+        }
+        .btn-refresh { background: #3498db; color: white; }
+        .btn-pdf { background: #27ae60; color: white; }
+        button:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* TABEL MODEL KOTAK */
+        .table-responsive { width: 100%; overflow-x: auto; }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 10px; 
+            font-size: 0.95rem; 
+        }
+        th, td { 
+            border: 1px solid #eee; 
+            padding: 15px; 
+            text-align: left; 
+        }
+        th { 
+            background-color: #2c3e50; 
+            color: white; 
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        tr:nth-child(even) { background-color: #fcfcfc; }
+
+        #loading { padding: 20px; text-align: center; color: #7f8c8d; font-weight: bold; }
+
+        @media (max-width: 600px) {
+            .controls { flex-direction: column; }
+            button { width: 100%; }
+            th, td { padding: 10px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <!-- GANTI URL LOGO DI SINI AGAR SAMA DENGAN PENDAFTARAN -->
+        <img src="media-logo-1-1-01.png" class="logo-img" alt="Logo">
+    </div>
+
+    <div class="card">
+        <h2>Data Pendaftar Terkini</h2>
+        
+        <div class="controls">
+            <button class="btn-refresh" onclick="fetchData()">REFRESH DATA</button>
+            <button class="btn-pdf" onclick="generatePDF()">DOWNLOAD PDF</button>
+        </div>
+
+        <div id="loading">Memuat data dari server...</div>
+        
+        <div class="table-responsive">
+            <table id="dataTable" style="display: none;">
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">NO</th>
+                        <th>NAMA LENGKAP</th>
+                        <th>POSISI</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // PAKAI URL YANG SAMA DENGAN HALAMAN PENDAFTARAN
+        const scriptURL = 'PASTE_URL_WEB_APP_GOOGLE_LO_DI_SINI';
+        let pendaftarData = [];
+
+        async function fetchData() {
+            const loading = document.getElementById('loading');
+            const table = document.getElementById('dataTable');
+            loading.style.display = 'block';
+            table.style.display = 'none';
+            
+            try {
+                const response = await fetch(scriptURL);
+                pendaftarData = await response.json();
+                
+                const tbody = document.getElementById('tableBody');
+                tbody.innerHTML = '';
+                
+                pendaftarData.forEach((item, index) => {
+                    const row = `<tr>
+                        <td>${index + 1}</td>
+                        <td>${item.nama.toUpperCase()}</td>
+                        <td>${item.posisi}</td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+
+                loading.style.display = 'none';
+                table.style.display = 'table';
+            } catch (error) {
+                loading.innerHTML = '❌ Gagal memuat data. Pastikan URL Script sudah benar.';
+                console.error(error);
+            }
+        }
+
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Judul PDF
+            doc.setFontSize(16);
+            doc.text("LAPORAN DATA PENDAFTAR IMAM & MUADZIN", 14, 20);
+            
+            // Format data untuk tabel PDF
+            const rows = pendaftarData.map((item, index) => [
+                index + 1, 
+                item.nama.toUpperCase(), 
+                item.posisi
+            ]);
+            
+            doc.autoTable({
+                head: [['NO', 'NAMA LENGKAP', 'POSISI']],
+                body: rows,
+                startY: 30,
+                theme: 'grid',
+                headStyles: { fillColor: [44, 62, 80], textColor: [255, 255, 255] },
+                styles: { cellPadding: 5, fontSize: 10 }
+            });
+
+            doc.save("Data_Pendaftar_Imam_Muadzin.pdf");
+        }
+
+        window.onload = fetchData;
+    </script>
+
+</body>
+</html>
