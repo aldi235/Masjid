@@ -145,7 +145,7 @@
     </div>
 
     <div class="card">
-        <h2>Pendaftaran</h2>
+        <h2>Pendaftaran Imam & Muadzin</h2>
         <form id="pendaftaranForm">
             <label>NAMA LENGKAP</label>
             <input type="text" id="nama" name="nama" placeholder="Ketik nama Anda..." required>
@@ -159,7 +159,7 @@
             
             <button type="submit" id="submitBtn">KIRIM SEKARANG</button>
         </form>
-        <div id="msg">✅ Data Berhasil Terkirim!</div>
+        <div id="msg">Terima kasih data sudah kami terima<br>silakan lihat flyer di bawah untuk info lebih lanjut</div>
     </div>
 
     <div class="info-section">
@@ -190,9 +190,9 @@
                 document.getElementById('msg').style.display = 'block';
             })
             .catch(error => {
-                alert('Gagal, coba lagi ya Bro!');
+                alert('Gagal, coba lagi...');
                 btn.disabled = false;
-                btn.innerHTML = 'KIRIM SEKARANG';
+                btn.innerHTML = 'MENDAFTAR';
             });
         });
     </script>
