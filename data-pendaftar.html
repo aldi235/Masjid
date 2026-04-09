@@ -76,19 +76,34 @@
         let pendaftarData = [];
 
         async function fetchData() {
-            const loader = document.getElementById('loading');
-            const table = document.getElementById('dataTable');
-            loader.style.display = 'block';
-            table.style.display = 'none';
-            
-            try {
-                const response = await fetch(scriptURL);
-                pendaftarData = await response.json();
-                renderTable();
-            } catch (error) {
-                loader.innerHTML = '❌ Gagal Memuat Data. Cek Deployment URL!';
-            }
+    const loader = document.getElementById('loading');
+    const table = document.getElementById('dataTable');
+    loader.style.display = 'block';
+    table.style.display = 'none';
+    
+    try {
+        // TAMBAHKAN setting redirect dan mode di sini
+        const response = await fetch(scriptURL, {
+            method: 'GET',
+            mode: 'cors',
+            redirect: 'follow' 
+        });
+
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        pendaftarData = await response.json();
+        
+        // Cek apakah data yang balik itu error dari Google Script
+        if (pendaftarData.error) {
+            loader.innerHTML = `❌ Error Script: ${pendaftarData.error}`;
+        } else {
+            renderTable();
         }
+    } catch (error) {
+        console.error("Detail Error:", error);
+        loader.innerHTML = '❌ Gagal Memuat Data. Pastikan Deployment Apps Script sudah "Anyone"!';
+    }
+}
 
         function renderTable() {
             const tbody = document.getElementById('tableBody');
